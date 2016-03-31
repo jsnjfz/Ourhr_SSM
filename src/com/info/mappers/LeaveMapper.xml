@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="LeaveMapper" >
+    <resultMap id="BaseResultMap" type="com.info.entity.Leave" >
+        <id column="leaveid" property="leaveid" jdbcType="INTEGER" />
+        <result column="aliveFlag" property="aliveflag" jdbcType="BIT" />
+        <result column="comFee" property="comfee" jdbcType="DOUBLE" />
+        <result column="deptCode" property="deptcode" jdbcType="VARCHAR" />
+        <result column="leaveApplyDate" property="leaveapplydate" jdbcType="TIMESTAMP" />
+        <result column="leaveDate" property="leavedate" jdbcType="TIMESTAMP" />
+        <result column="leaveStatus" property="leavestatus" jdbcType="VARCHAR" />
+        <result column="leaveType" property="leavetype" jdbcType="VARCHAR" />
+        <result column="onOffType" property="onofftype" jdbcType="VARCHAR" />
+        <result column="perFee" property="perfee" jdbcType="DOUBLE" />
+        <result column="positionCode" property="positioncode" jdbcType="VARCHAR" />
+        <result column="recCreTm" property="reccretm" jdbcType="TIMESTAMP" />
+        <result column="recCreUsrId" property="reccreusrid" jdbcType="VARCHAR" />
+        <result column="recUpdtTm" property="recupdttm" jdbcType="TIMESTAMP" />
+        <result column="recUpdtUsrId" property="recupdtusrid" jdbcType="VARCHAR" />
+        <result column="recordDate" property="recorddate" jdbcType="TIMESTAMP" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="staffId" property="staffid" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from f5_leave
+        where leaveid = #{leaveid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.info.entity.Leave" >
+        insert into f5_leave (leaveid, aliveFlag, comFee, 
+            deptCode, leaveApplyDate, leaveDate, 
+            leaveStatus, leaveType, onOffType, 
+            perFee, positionCode, recCreTm, 
+            recCreUsrId, recUpdtTm, recUpdtUsrId, 
+            recordDate, remark, staffId
+            )
+        values (#{leaveid,jdbcType=INTEGER}, #{aliveflag,jdbcType=BIT}, #{comfee,jdbcType=DOUBLE}, 
+            #{deptcode,jdbcType=VARCHAR}, #{leaveapplydate,jdbcType=TIMESTAMP}, #{leavedate,jdbcType=TIMESTAMP}, 
+            #{leavestatus,jdbcType=VARCHAR}, #{leavetype,jdbcType=VARCHAR}, #{onofftype,jdbcType=VARCHAR}, 
+            #{perfee,jdbcType=DOUBLE}, #{positioncode,jdbcType=VARCHAR}, #{reccretm,jdbcType=TIMESTAMP}, 
+            #{reccreusrid,jdbcType=VARCHAR}, #{recupdttm,jdbcType=TIMESTAMP}, #{recupdtusrid,jdbcType=VARCHAR}, 
+            #{recorddate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{staffid,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.info.entity.Leave" >
+        update f5_leave
+        set aliveFlag = #{aliveflag,jdbcType=BIT},
+            comFee = #{comfee,jdbcType=DOUBLE},
+            deptCode = #{deptcode,jdbcType=VARCHAR},
+            leaveApplyDate = #{leaveapplydate,jdbcType=TIMESTAMP},
+            leaveDate = #{leavedate,jdbcType=TIMESTAMP},
+            leaveStatus = #{leavestatus,jdbcType=VARCHAR},
+            leaveType = #{leavetype,jdbcType=VARCHAR},
+            onOffType = #{onofftype,jdbcType=VARCHAR},
+            perFee = #{perfee,jdbcType=DOUBLE},
+            positionCode = #{positioncode,jdbcType=VARCHAR},
+            recCreTm = #{reccretm,jdbcType=TIMESTAMP},
+            recCreUsrId = #{reccreusrid,jdbcType=VARCHAR},
+            recUpdtTm = #{recupdttm,jdbcType=TIMESTAMP},
+            recUpdtUsrId = #{recupdtusrid,jdbcType=VARCHAR},
+            recordDate = #{recorddate,jdbcType=TIMESTAMP},
+            remark = #{remark,jdbcType=VARCHAR},
+            staffId = #{staffid,jdbcType=VARCHAR}
+        where leaveid = #{leaveid,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select leaveid, aliveFlag, comFee, deptCode, leaveApplyDate, leaveDate, leaveStatus, 
+        leaveType, onOffType, perFee, positionCode, recCreTm, recCreUsrId, recUpdtTm, recUpdtUsrId, 
+        recordDate, remark, staffId
+        from f5_leave
+        where leaveid = #{leaveid,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap" >
+        select leaveid, aliveFlag, comFee, deptCode, leaveApplyDate, leaveDate, leaveStatus, 
+        leaveType, onOffType, perFee, positionCode, recCreTm, recCreUsrId, recUpdtTm, recUpdtUsrId, 
+        recordDate, remark, staffId
+        from f5_leave
+    </select>
+
+</mapper>

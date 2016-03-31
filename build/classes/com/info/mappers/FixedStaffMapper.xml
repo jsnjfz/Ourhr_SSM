@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="FixedStaffMapper" >
+    <resultMap id="BaseResultMap" type="com.info.entity.FixedStaff" >
+        <id column="fixedstaffId" property="fixedstaffid" jdbcType="INTEGER" />
+        <result column="aliveFlag" property="aliveflag" jdbcType="BIT" />
+        <result column="departmentCode" property="departmentcode" jdbcType="VARCHAR" />
+        <result column="fixedNumber" property="fixednumber" jdbcType="INTEGER" />
+        <result column="fixedType" property="fixedtype" jdbcType="VARCHAR" />
+        <result column="postCode" property="postcode" jdbcType="VARCHAR" />
+        <result column="recCreTm" property="reccretm" jdbcType="TIMESTAMP" />
+        <result column="recCreUsrId" property="reccreusrid" jdbcType="VARCHAR" />
+        <result column="recUpdtTm" property="recupdttm" jdbcType="TIMESTAMP" />
+        <result column="recUpdtUsrId" property="recupdtusrid" jdbcType="VARCHAR" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from f1_fixedstaff
+        where fixedstaffId = #{fixedstaffid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.info.entity.FixedStaff" >
+        insert into f1_fixedstaff (fixedstaffId, aliveFlag, departmentCode, 
+            fixedNumber, fixedType, postCode, 
+            recCreTm, recCreUsrId, recUpdtTm, 
+            recUpdtUsrId, remark)
+        values (#{fixedstaffid,jdbcType=INTEGER}, #{aliveflag,jdbcType=BIT}, #{departmentcode,jdbcType=VARCHAR}, 
+            #{fixednumber,jdbcType=INTEGER}, #{fixedtype,jdbcType=VARCHAR}, #{postcode,jdbcType=VARCHAR}, 
+            #{reccretm,jdbcType=TIMESTAMP}, #{reccreusrid,jdbcType=VARCHAR}, #{recupdttm,jdbcType=TIMESTAMP}, 
+            #{recupdtusrid,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.info.entity.FixedStaff" >
+        update f1_fixedstaff
+        set aliveFlag = #{aliveflag,jdbcType=BIT},
+            departmentCode = #{departmentcode,jdbcType=VARCHAR},
+            fixedNumber = #{fixednumber,jdbcType=INTEGER},
+            fixedType = #{fixedtype,jdbcType=VARCHAR},
+            postCode = #{postcode,jdbcType=VARCHAR},
+            recCreTm = #{reccretm,jdbcType=TIMESTAMP},
+            recCreUsrId = #{reccreusrid,jdbcType=VARCHAR},
+            recUpdtTm = #{recupdttm,jdbcType=TIMESTAMP},
+            recUpdtUsrId = #{recupdtusrid,jdbcType=VARCHAR},
+            remark = #{remark,jdbcType=VARCHAR}
+        where fixedstaffId = #{fixedstaffid,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select fixedstaffId, aliveFlag, departmentCode, fixedNumber, fixedType, postCode, 
+        recCreTm, recCreUsrId, recUpdtTm, recUpdtUsrId, remark
+        from f1_fixedstaff
+        where fixedstaffId = #{fixedstaffid,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap" >
+        select fixedstaffId, aliveFlag, departmentCode, fixedNumber, fixedType, postCode, 
+        recCreTm, recCreUsrId, recUpdtTm, recUpdtUsrId, remark
+        from f1_fixedstaff
+    </select>
+
+</mapper>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="PostMapper" >
+    <resultMap id="BaseResultMap" type="com.info.entity.Post" >
+        <id column="postId" property="postid" jdbcType="INTEGER" />
+        <result column="aliveFlag" property="aliveflag" jdbcType="BIT" />
+        <result column="major" property="major" jdbcType="VARCHAR" />
+        <result column="postCode" property="postcode" jdbcType="VARCHAR" />
+        <result column="postLayer" property="postlayer" jdbcType="VARCHAR" />
+        <result column="postMulti" property="postmulti" jdbcType="VARCHAR" />
+        <result column="postName" property="postname" jdbcType="VARCHAR" />
+        <result column="postNumber" property="postnumber" jdbcType="REAL" />
+        <result column="postNumberLow" property="postnumberlow" jdbcType="REAL" />
+        <result column="postNumberUpper" property="postnumberupper" jdbcType="REAL" />
+        <result column="recCreTm" property="reccretm" jdbcType="TIMESTAMP" />
+        <result column="recCreUsrId" property="reccreusrid" jdbcType="VARCHAR" />
+        <result column="recUpdtTm" property="recupdttm" jdbcType="TIMESTAMP" />
+        <result column="recUpdtUsrId" property="recupdtusrid" jdbcType="VARCHAR" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="workType" property="worktype" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from f1_post
+        where postId = #{postid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.info.entity.Post" >
+        insert into f1_post (postId, aliveFlag, major, 
+            postCode, postLayer, postMulti, 
+            postName, postNumber, postNumberLow, 
+            postNumberUpper, recCreTm, recCreUsrId, 
+            recUpdtTm, recUpdtUsrId, remark, 
+            workType)
+        values (#{postid,jdbcType=INTEGER}, #{aliveflag,jdbcType=BIT}, #{major,jdbcType=VARCHAR}, 
+            #{postcode,jdbcType=VARCHAR}, #{postlayer,jdbcType=VARCHAR}, #{postmulti,jdbcType=VARCHAR}, 
+            #{postname,jdbcType=VARCHAR}, #{postnumber,jdbcType=REAL}, #{postnumberlow,jdbcType=REAL}, 
+            #{postnumberupper,jdbcType=REAL}, #{reccretm,jdbcType=TIMESTAMP}, #{reccreusrid,jdbcType=VARCHAR}, 
+            #{recupdttm,jdbcType=TIMESTAMP}, #{recupdtusrid,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+            #{worktype,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.info.entity.Post" >
+        update f1_post
+        set aliveFlag = #{aliveflag,jdbcType=BIT},
+            major = #{major,jdbcType=VARCHAR},
+            postCode = #{postcode,jdbcType=VARCHAR},
+            postLayer = #{postlayer,jdbcType=VARCHAR},
+            postMulti = #{postmulti,jdbcType=VARCHAR},
+            postName = #{postname,jdbcType=VARCHAR},
+            postNumber = #{postnumber,jdbcType=REAL},
+            postNumberLow = #{postnumberlow,jdbcType=REAL},
+            postNumberUpper = #{postnumberupper,jdbcType=REAL},
+            recCreTm = #{reccretm,jdbcType=TIMESTAMP},
+            recCreUsrId = #{reccreusrid,jdbcType=VARCHAR},
+            recUpdtTm = #{recupdttm,jdbcType=TIMESTAMP},
+            recUpdtUsrId = #{recupdtusrid,jdbcType=VARCHAR},
+            remark = #{remark,jdbcType=VARCHAR},
+            workType = #{worktype,jdbcType=VARCHAR}
+        where postId = #{postid,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select postId, aliveFlag, major, postCode, postLayer, postMulti, postName, postNumber, 
+        postNumberLow, postNumberUpper, recCreTm, recCreUsrId, recUpdtTm, recUpdtUsrId, remark, 
+        workType
+        from f1_post
+        where postId = #{postid,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap" >
+        select postId, aliveFlag, major, postCode, postLayer, postMulti, postName, postNumber, 
+        postNumberLow, postNumberUpper, recCreTm, recCreUsrId, recUpdtTm, recUpdtUsrId, remark, 
+        workType
+        from f1_post
+    </select>
+
+</mapper>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="PostSortMapper" >
+    <resultMap id="BaseResultMap" type="com.info.entity.PostSort" >
+        <id column="postsortId" property="postsortid" jdbcType="INTEGER" />
+        <result column="aliveFlag" property="aliveflag" jdbcType="BIT" />
+        <result column="level" property="level" jdbcType="VARCHAR" />
+        <result column="postsortCode" property="postsortcode" jdbcType="VARCHAR" />
+        <result column="postsortName" property="postsortname" jdbcType="VARCHAR" />
+        <result column="recCreTm" property="reccretm" jdbcType="TIMESTAMP" />
+        <result column="recCreUsrId" property="reccreusrid" jdbcType="VARCHAR" />
+        <result column="recUpdtTm" property="recupdttm" jdbcType="TIMESTAMP" />
+        <result column="recUpdtUsrId" property="recupdtusrid" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from f1_postsort
+        where postsortId = #{postsortid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.info.entity.PostSort" >
+        insert into f1_postsort (postsortId, aliveFlag, level, 
+            postsortCode, postsortName, recCreTm, 
+            recCreUsrId, recUpdtTm, recUpdtUsrId
+            )
+        values (#{postsortid,jdbcType=INTEGER}, #{aliveflag,jdbcType=BIT}, #{level,jdbcType=VARCHAR}, 
+            #{postsortcode,jdbcType=VARCHAR}, #{postsortname,jdbcType=VARCHAR}, #{reccretm,jdbcType=TIMESTAMP}, 
+            #{reccreusrid,jdbcType=VARCHAR}, #{recupdttm,jdbcType=TIMESTAMP}, #{recupdtusrid,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.info.entity.PostSort" >
+        update f1_postsort
+        set aliveFlag = #{aliveflag,jdbcType=BIT},
+            level = #{level,jdbcType=VARCHAR},
+            postsortCode = #{postsortcode,jdbcType=VARCHAR},
+            postsortName = #{postsortname,jdbcType=VARCHAR},
+            recCreTm = #{reccretm,jdbcType=TIMESTAMP},
+            recCreUsrId = #{reccreusrid,jdbcType=VARCHAR},
+            recUpdtTm = #{recupdttm,jdbcType=TIMESTAMP},
+            recUpdtUsrId = #{recupdtusrid,jdbcType=VARCHAR}
+        where postsortId = #{postsortid,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select postsortId, aliveFlag, level, postsortCode, postsortName, recCreTm, recCreUsrId, 
+        recUpdtTm, recUpdtUsrId
+        from f1_postsort
+        where postsortId = #{postsortid,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap" >
+        select postsortId, aliveFlag, level, postsortCode, postsortName, recCreTm, recCreUsrId, 
+        recUpdtTm, recUpdtUsrId
+        from f1_postsort
+    </select>
+    
+        <!-- 查询岗位分类信息 -->
+	<select id="listPostSort" parameterType="Map" resultMap="BaseResultMap">
+	     select *
+		from
+		f1_postsort 
+        <where>
+            <if test="postname!=null and postname!='' ">
+                and a.postname like #{postname}
+            </if>
+        </where>
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+    
+    	<!-- 总记录条数 -->
+	<select id="iTotalPostSort" resultType="java.lang.Integer">
+         select count(a.postsortid)
+        from
+        f1_postsort a
+        <where>
+            <if test="postname!=null and postname!='' ">
+                and a.postname like #{postname}
+            </if>
+        </where>
+	</select>
+
+</mapper>

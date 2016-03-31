@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="InsureHisMapper" >
+    <resultMap id="BaseResultMap" type="com.info.entity.InsureHis" >
+        <id column="insurehisid" property="insurehisid" jdbcType="INTEGER" />
+        <result column="aliveFlag" property="aliveflag" jdbcType="BIT" />
+        <result column="base" property="base" jdbcType="DOUBLE" />
+        <result column="baseI" property="basei" jdbcType="DOUBLE" />
+        <result column="baseM" property="basem" jdbcType="DOUBLE" />
+        <result column="baseO" property="baseo" jdbcType="DOUBLE" />
+        <result column="beginDate" property="begindate" jdbcType="TIMESTAMP" />
+        <result column="endDate" property="enddate" jdbcType="TIMESTAMP" />
+        <result column="insureB" property="insureb" jdbcType="DOUBLE" />
+        <result column="insureH" property="insureh" jdbcType="DOUBLE" />
+        <result column="insureI" property="insurei" jdbcType="DOUBLE" />
+        <result column="insureICom" property="insureicom" jdbcType="DOUBLE" />
+        <result column="insureIPer" property="insureiper" jdbcType="DOUBLE" />
+        <result column="insureM" property="insurem" jdbcType="DOUBLE" />
+        <result column="insureMCom" property="insuremcom" jdbcType="DOUBLE" />
+        <result column="insureMPer" property="insuremper" jdbcType="DOUBLE" />
+        <result column="insureNo" property="insureno" jdbcType="VARCHAR" />
+        <result column="insureO" property="insureo" jdbcType="DOUBLE" />
+        <result column="insureOCom" property="insureocom" jdbcType="DOUBLE" />
+        <result column="insureOPer" property="insureoper" jdbcType="DOUBLE" />
+        <result column="recCreTm" property="reccretm" jdbcType="TIMESTAMP" />
+        <result column="recCreUsrId" property="reccreusrid" jdbcType="VARCHAR" />
+        <result column="recUpdtTm" property="recupdttm" jdbcType="TIMESTAMP" />
+        <result column="recUpdtUsrId" property="recupdtusrid" jdbcType="VARCHAR" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="staffId" property="staffid" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from f6_insurehis
+        where insurehisid = #{insurehisid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.info.entity.InsureHis" >
+        insert into f6_insurehis (insurehisid, aliveFlag, base, 
+            baseI, baseM, baseO, 
+            beginDate, endDate, insureB, 
+            insureH, insureI, insureICom, 
+            insureIPer, insureM, insureMCom, 
+            insureMPer, insureNo, insureO, 
+            insureOCom, insureOPer, recCreTm, 
+            recCreUsrId, recUpdtTm, recUpdtUsrId, 
+            remark, staffId)
+        values (#{insurehisid,jdbcType=INTEGER}, #{aliveflag,jdbcType=BIT}, #{base,jdbcType=DOUBLE}, 
+            #{basei,jdbcType=DOUBLE}, #{basem,jdbcType=DOUBLE}, #{baseo,jdbcType=DOUBLE}, 
+            #{begindate,jdbcType=TIMESTAMP}, #{enddate,jdbcType=TIMESTAMP}, #{insureb,jdbcType=DOUBLE}, 
+            #{insureh,jdbcType=DOUBLE}, #{insurei,jdbcType=DOUBLE}, #{insureicom,jdbcType=DOUBLE}, 
+            #{insureiper,jdbcType=DOUBLE}, #{insurem,jdbcType=DOUBLE}, #{insuremcom,jdbcType=DOUBLE}, 
+            #{insuremper,jdbcType=DOUBLE}, #{insureno,jdbcType=VARCHAR}, #{insureo,jdbcType=DOUBLE}, 
+            #{insureocom,jdbcType=DOUBLE}, #{insureoper,jdbcType=DOUBLE}, #{reccretm,jdbcType=TIMESTAMP}, 
+            #{reccreusrid,jdbcType=VARCHAR}, #{recupdttm,jdbcType=TIMESTAMP}, #{recupdtusrid,jdbcType=VARCHAR}, 
+            #{remark,jdbcType=VARCHAR}, #{staffid,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.info.entity.InsureHis" >
+        update f6_insurehis
+        set aliveFlag = #{aliveflag,jdbcType=BIT},
+            base = #{base,jdbcType=DOUBLE},
+            baseI = #{basei,jdbcType=DOUBLE},
+            baseM = #{basem,jdbcType=DOUBLE},
+            baseO = #{baseo,jdbcType=DOUBLE},
+            beginDate = #{begindate,jdbcType=TIMESTAMP},
+            endDate = #{enddate,jdbcType=TIMESTAMP},
+            insureB = #{insureb,jdbcType=DOUBLE},
+            insureH = #{insureh,jdbcType=DOUBLE},
+            insureI = #{insurei,jdbcType=DOUBLE},
+            insureICom = #{insureicom,jdbcType=DOUBLE},
+            insureIPer = #{insureiper,jdbcType=DOUBLE},
+            insureM = #{insurem,jdbcType=DOUBLE},
+            insureMCom = #{insuremcom,jdbcType=DOUBLE},
+            insureMPer = #{insuremper,jdbcType=DOUBLE},
+            insureNo = #{insureno,jdbcType=VARCHAR},
+            insureO = #{insureo,jdbcType=DOUBLE},
+            insureOCom = #{insureocom,jdbcType=DOUBLE},
+            insureOPer = #{insureoper,jdbcType=DOUBLE},
+            recCreTm = #{reccretm,jdbcType=TIMESTAMP},
+            recCreUsrId = #{reccreusrid,jdbcType=VARCHAR},
+            recUpdtTm = #{recupdttm,jdbcType=TIMESTAMP},
+            recUpdtUsrId = #{recupdtusrid,jdbcType=VARCHAR},
+            remark = #{remark,jdbcType=VARCHAR},
+            staffId = #{staffid,jdbcType=VARCHAR}
+        where insurehisid = #{insurehisid,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select insurehisid, aliveFlag, base, baseI, baseM, baseO, beginDate, endDate, insureB, 
+        insureH, insureI, insureICom, insureIPer, insureM, insureMCom, insureMPer, insureNo, 
+        insureO, insureOCom, insureOPer, recCreTm, recCreUsrId, recUpdtTm, recUpdtUsrId, 
+        remark, staffId
+        from f6_insurehis
+        where insurehisid = #{insurehisid,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap" >
+        select insurehisid, aliveFlag, base, baseI, baseM, baseO, beginDate, endDate, insureB, 
+        insureH, insureI, insureICom, insureIPer, insureM, insureMCom, insureMPer, insureNo, 
+        insureO, insureOCom, insureOPer, recCreTm, recCreUsrId, recUpdtTm, recUpdtUsrId, 
+        remark, staffId
+        from f6_insurehis
+    </select>
+
+</mapper>

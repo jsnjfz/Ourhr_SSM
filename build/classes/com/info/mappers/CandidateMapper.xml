@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="CandidateMapper" >
+    <resultMap id="BaseResultMap" type="com.info.entity.Candidate" >
+        <id column="candidateid" property="candidateid" jdbcType="INTEGER" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="aliveFlag" property="aliveflag" jdbcType="BIT" />
+        <result column="appJobNo" property="appjobno" jdbcType="INTEGER" />
+        <result column="birthPlace" property="birthplace" jdbcType="VARCHAR" />
+        <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+        <result column="college" property="college" jdbcType="VARCHAR" />
+        <result column="collegeType" property="collegetype" jdbcType="VARCHAR" />
+        <result column="degree" property="degree" jdbcType="VARCHAR" />
+        <result column="degreeDate" property="degreedate" jdbcType="TIMESTAMP" />
+        <result column="deptCode" property="deptcode" jdbcType="VARCHAR" />
+        <result column="education" property="education" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="empWay" property="empway" jdbcType="INTEGER" />
+        <result column="employStatus" property="employstatus" jdbcType="VARCHAR" />
+        <result column="formerWorkPlace" property="formerworkplace" jdbcType="VARCHAR" />
+        <result column="graduateDate" property="graduatedate" jdbcType="TIMESTAMP" />
+        <result column="guarantor" property="guarantor" jdbcType="VARCHAR" />
+        <result column="health" property="health" jdbcType="VARCHAR" />
+        <result column="hobby" property="hobby" jdbcType="VARCHAR" />
+        <result column="idCardNo" property="idcardno" jdbcType="VARCHAR" />
+        <result column="language" property="language" jdbcType="VARCHAR" />
+        <result column="languageLevel" property="languagelevel" jdbcType="VARCHAR" />
+        <result column="major" property="major" jdbcType="VARCHAR" />
+        <result column="marriage" property="marriage" jdbcType="VARCHAR" />
+        <result column="mobileTel" property="mobiletel" jdbcType="VARCHAR" />
+        <result column="nation" property="nation" jdbcType="INTEGER" />
+        <result column="nativ" property="nativ" jdbcType="VARCHAR" />
+        <result column="origin" property="origin" jdbcType="VARCHAR" />
+        <result column="party" property="party" jdbcType="VARCHAR" />
+        <result column="partyDate" property="partydate" jdbcType="TIMESTAMP" />
+        <result column="recCreTm" property="reccretm" jdbcType="TIMESTAMP" />
+        <result column="recCreUsrId" property="reccreusrid" jdbcType="VARCHAR" />
+        <result column="recUpdtTm" property="recupdttm" jdbcType="TIMESTAMP" />
+        <result column="recUpdtUsrId" property="recupdtusrid" jdbcType="VARCHAR" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="remark1" property="remark1" jdbcType="VARCHAR" />
+        <result column="remark2" property="remark2" jdbcType="VARCHAR" />
+        <result column="remark3" property="remark3" jdbcType="VARCHAR" />
+        <result column="remark4" property="remark4" jdbcType="VARCHAR" />
+        <result column="remark5" property="remark5" jdbcType="VARCHAR" />
+        <result column="remark6" property="remark6" jdbcType="VARCHAR" />
+        <result column="remark7" property="remark7" jdbcType="VARCHAR" />
+        <result column="remark8" property="remark8" jdbcType="VARCHAR" />
+        <result column="remark9" property="remark9" jdbcType="VARCHAR" />
+        <result column="sex" property="sex" jdbcType="VARCHAR" />
+        <result column="specialSkill" property="specialskill" jdbcType="VARCHAR" />
+        <result column="staffId" property="staffid" jdbcType="VARCHAR" />
+        <result column="staffName" property="staffname" jdbcType="VARCHAR" />
+        <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="titleDate" property="titledate" jdbcType="VARCHAR" />
+        <result column="zipCode" property="zipcode" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from f2_candidate
+        where candidateid = #{candidateid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.info.entity.Candidate" >
+        insert into f2_candidate (candidateid, address, aliveFlag, 
+            appJobNo, birthPlace, birthday, 
+            college, collegeType, degree, 
+            degreeDate, deptCode, education, 
+            email, empWay, employStatus, 
+            formerWorkPlace, graduateDate, guarantor, 
+            health, hobby, idCardNo, 
+            language, languageLevel, major, 
+            marriage, mobileTel, nation, 
+            nativ, origin, party, 
+            partyDate, recCreTm, recCreUsrId, 
+            recUpdtTm, recUpdtUsrId, remark, 
+            remark1, remark2, remark3, 
+            remark4, remark5, remark6, 
+            remark7, remark8, remark9, 
+            sex, specialSkill, staffId, 
+            staffName, telephone, title, 
+            titleDate, zipCode)
+        values (#{candidateid,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{aliveflag,jdbcType=BIT}, 
+            #{appjobno,jdbcType=INTEGER}, #{birthplace,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, 
+            #{college,jdbcType=VARCHAR}, #{collegetype,jdbcType=VARCHAR}, #{degree,jdbcType=VARCHAR}, 
+            #{degreedate,jdbcType=TIMESTAMP}, #{deptcode,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+            #{email,jdbcType=VARCHAR}, #{empway,jdbcType=INTEGER}, #{employstatus,jdbcType=VARCHAR}, 
+            #{formerworkplace,jdbcType=VARCHAR}, #{graduatedate,jdbcType=TIMESTAMP}, #{guarantor,jdbcType=VARCHAR}, 
+            #{health,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, #{idcardno,jdbcType=VARCHAR}, 
+            #{language,jdbcType=VARCHAR}, #{languagelevel,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, 
+            #{marriage,jdbcType=VARCHAR}, #{mobiletel,jdbcType=VARCHAR}, #{nation,jdbcType=INTEGER}, 
+            #{nativ,jdbcType=VARCHAR}, #{origin,jdbcType=VARCHAR}, #{party,jdbcType=VARCHAR}, 
+            #{partydate,jdbcType=TIMESTAMP}, #{reccretm,jdbcType=TIMESTAMP}, #{reccreusrid,jdbcType=VARCHAR}, 
+            #{recupdttm,jdbcType=TIMESTAMP}, #{recupdtusrid,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+            #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, 
+            #{remark4,jdbcType=VARCHAR}, #{remark5,jdbcType=VARCHAR}, #{remark6,jdbcType=VARCHAR}, 
+            #{remark7,jdbcType=VARCHAR}, #{remark8,jdbcType=VARCHAR}, #{remark9,jdbcType=VARCHAR}, 
+            #{sex,jdbcType=VARCHAR}, #{specialskill,jdbcType=VARCHAR}, #{staffid,jdbcType=VARCHAR}, 
+            #{staffname,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+            #{titledate,jdbcType=VARCHAR}, #{zipcode,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.info.entity.Candidate" >
+        update f2_candidate
+        set address = #{address,jdbcType=VARCHAR},
+            aliveFlag = #{aliveflag,jdbcType=BIT},
+            appJobNo = #{appjobno,jdbcType=INTEGER},
+            birthPlace = #{birthplace,jdbcType=VARCHAR},
+            birthday = #{birthday,jdbcType=TIMESTAMP},
+            college = #{college,jdbcType=VARCHAR},
+            collegeType = #{collegetype,jdbcType=VARCHAR},
+            degree = #{degree,jdbcType=VARCHAR},
+            degreeDate = #{degreedate,jdbcType=TIMESTAMP},
+            deptCode = #{deptcode,jdbcType=VARCHAR},
+            education = #{education,jdbcType=VARCHAR},
+            email = #{email,jdbcType=VARCHAR},
+            empWay = #{empway,jdbcType=INTEGER},
+            employStatus = #{employstatus,jdbcType=VARCHAR},
+            formerWorkPlace = #{formerworkplace,jdbcType=VARCHAR},
+            graduateDate = #{graduatedate,jdbcType=TIMESTAMP},
+            guarantor = #{guarantor,jdbcType=VARCHAR},
+            health = #{health,jdbcType=VARCHAR},
+            hobby = #{hobby,jdbcType=VARCHAR},
+            idCardNo = #{idcardno,jdbcType=VARCHAR},
+            language = #{language,jdbcType=VARCHAR},
+            languageLevel = #{languagelevel,jdbcType=VARCHAR},
+            major = #{major,jdbcType=VARCHAR},
+            marriage = #{marriage,jdbcType=VARCHAR},
+            mobileTel = #{mobiletel,jdbcType=VARCHAR},
+            nation = #{nation,jdbcType=INTEGER},
+            nativ = #{nativ,jdbcType=VARCHAR},
+            origin = #{origin,jdbcType=VARCHAR},
+            party = #{party,jdbcType=VARCHAR},
+            partyDate = #{partydate,jdbcType=TIMESTAMP},
+            recCreTm = #{reccretm,jdbcType=TIMESTAMP},
+            recCreUsrId = #{reccreusrid,jdbcType=VARCHAR},
+            recUpdtTm = #{recupdttm,jdbcType=TIMESTAMP},
+            recUpdtUsrId = #{recupdtusrid,jdbcType=VARCHAR},
+            remark = #{remark,jdbcType=VARCHAR},
+            remark1 = #{remark1,jdbcType=VARCHAR},
+            remark2 = #{remark2,jdbcType=VARCHAR},
+            remark3 = #{remark3,jdbcType=VARCHAR},
+            remark4 = #{remark4,jdbcType=VARCHAR},
+            remark5 = #{remark5,jdbcType=VARCHAR},
+            remark6 = #{remark6,jdbcType=VARCHAR},
+            remark7 = #{remark7,jdbcType=VARCHAR},
+            remark8 = #{remark8,jdbcType=VARCHAR},
+            remark9 = #{remark9,jdbcType=VARCHAR},
+            sex = #{sex,jdbcType=VARCHAR},
+            specialSkill = #{specialskill,jdbcType=VARCHAR},
+            staffId = #{staffid,jdbcType=VARCHAR},
+            staffName = #{staffname,jdbcType=VARCHAR},
+            telephone = #{telephone,jdbcType=VARCHAR},
+            title = #{title,jdbcType=VARCHAR},
+            titleDate = #{titledate,jdbcType=VARCHAR},
+            zipCode = #{zipcode,jdbcType=VARCHAR}
+        where candidateid = #{candidateid,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select candidateid, address, aliveFlag, appJobNo, birthPlace, birthday, college, 
+        collegeType, degree, degreeDate, deptCode, education, email, empWay, employStatus, 
+        formerWorkPlace, graduateDate, guarantor, health, hobby, idCardNo, language, languageLevel, 
+        major, marriage, mobileTel, nation, nativ, origin, party, partyDate, recCreTm, recCreUsrId, 
+        recUpdtTm, recUpdtUsrId, remark, remark1, remark2, remark3, remark4, remark5, remark6, 
+        remark7, remark8, remark9, sex, specialSkill, staffId, staffName, telephone, title, 
+        titleDate, zipCode
+        from f2_candidate
+        where candidateid = #{candidateid,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap" >
+        select candidateid, address, aliveFlag, appJobNo, birthPlace, birthday, college, 
+        collegeType, degree, degreeDate, deptCode, education, email, empWay, employStatus, 
+        formerWorkPlace, graduateDate, guarantor, health, hobby, idCardNo, language, languageLevel, 
+        major, marriage, mobileTel, nation, nativ, origin, party, partyDate, recCreTm, recCreUsrId, 
+        recUpdtTm, recUpdtUsrId, remark, remark1, remark2, remark3, remark4, remark5, remark6, 
+        remark7, remark8, remark9, sex, specialSkill, staffId, staffName, telephone, title, 
+        titleDate, zipCode
+        from f2_candidate
+    </select>
+
+</mapper>

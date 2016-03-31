@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="DepartmentMapper" >
+    <resultMap id="BaseResultMap" type="com.info.entity.Department" >
+        <id column="departmentId" property="departmentid" jdbcType="INTEGER" />
+        <result column="aliveFlag" property="aliveflag" jdbcType="VARCHAR" />
+        <result column="deptCode" property="deptcode" jdbcType="VARCHAR" />
+        <result column="deptName" property="deptname" jdbcType="VARCHAR" />
+        <result column="flag" property="flag" jdbcType="VARCHAR" />
+        <result column="flag1" property="flag1" jdbcType="VARCHAR" />
+        <result column="flag2" property="flag2" jdbcType="VARCHAR" />
+        <result column="flag3" property="flag3" jdbcType="VARCHAR" />
+        <result column="level" property="level" jdbcType="VARCHAR" />
+        <result column="parentDeptCode" property="parentdeptcode" jdbcType="VARCHAR" />
+        <result column="recCreTm" property="reccretm" jdbcType="TIMESTAMP" />
+        <result column="recCreUsrId" property="reccreusrid" jdbcType="VARCHAR" />
+        <result column="recUpdtTm" property="recupdttm" jdbcType="TIMESTAMP" />
+        <result column="recUpdtUsrId" property="recupdtusrid" jdbcType="VARCHAR" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="remark1" property="remark1" jdbcType="VARCHAR" />
+        <result column="remark2" property="remark2" jdbcType="VARCHAR" />
+        <result column="remark3" property="remark3" jdbcType="VARCHAR" />
+        <result column="remark4" property="remark4" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from f1_department
+        where departmentId = #{departmentid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.info.entity.Department" >
+        insert into f1_department (departmentId, aliveFlag, deptCode, 
+            deptName, flag, flag1, 
+            flag2, flag3, level, 
+            parentDeptCode, recCreTm, recCreUsrId, 
+            recUpdtTm, recUpdtUsrId, remark, 
+            remark1, remark2, remark3, 
+            remark4)
+        values (#{departmentid,jdbcType=INTEGER}, #{aliveflag,jdbcType=VARCHAR}, #{deptcode,jdbcType=VARCHAR}, 
+            #{deptname,jdbcType=VARCHAR}, #{flag,jdbcType=VARCHAR}, #{flag1,jdbcType=VARCHAR}, 
+            #{flag2,jdbcType=VARCHAR}, #{flag3,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, 
+            #{parentdeptcode,jdbcType=VARCHAR}, #{reccretm,jdbcType=TIMESTAMP}, #{reccreusrid,jdbcType=VARCHAR}, 
+            #{recupdttm,jdbcType=TIMESTAMP}, #{recupdtusrid,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+            #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, 
+            #{remark4,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.info.entity.Department" >
+        update f1_department
+        set aliveFlag = #{aliveflag,jdbcType=VARCHAR},
+            deptCode = #{deptcode,jdbcType=VARCHAR},
+            deptName = #{deptname,jdbcType=VARCHAR},
+            flag = #{flag,jdbcType=VARCHAR},
+            flag1 = #{flag1,jdbcType=VARCHAR},
+            flag2 = #{flag2,jdbcType=VARCHAR},
+            flag3 = #{flag3,jdbcType=VARCHAR},
+            level = #{level,jdbcType=VARCHAR},
+            parentDeptCode = #{parentdeptcode,jdbcType=VARCHAR},
+            recCreTm = #{reccretm,jdbcType=TIMESTAMP},
+            recCreUsrId = #{reccreusrid,jdbcType=VARCHAR},
+            recUpdtTm = #{recupdttm,jdbcType=TIMESTAMP},
+            recUpdtUsrId = #{recupdtusrid,jdbcType=VARCHAR},
+            remark = #{remark,jdbcType=VARCHAR},
+            remark1 = #{remark1,jdbcType=VARCHAR},
+            remark2 = #{remark2,jdbcType=VARCHAR},
+            remark3 = #{remark3,jdbcType=VARCHAR},
+            remark4 = #{remark4,jdbcType=VARCHAR}
+        where departmentId = #{departmentid,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select departmentId, aliveFlag, deptCode, deptName, flag, flag1, flag2, flag3, level, 
+        parentDeptCode, recCreTm, recCreUsrId, recUpdtTm, recUpdtUsrId, remark, remark1, 
+        remark2, remark3, remark4
+        from f1_department
+        where departmentId = #{departmentid,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap" >
+        select departmentId, aliveFlag, deptCode, deptName, flag, flag1, flag2, flag3, level, 
+        parentDeptCode, recCreTm, recCreUsrId, recUpdtTm, recUpdtUsrId, remark, remark1, 
+        remark2, remark3, remark4
+        from f1_department
+    </select>
+
+</mapper>

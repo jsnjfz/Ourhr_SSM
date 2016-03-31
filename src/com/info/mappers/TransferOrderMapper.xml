@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="TransferOrderMapper" >
+    <resultMap id="BaseResultMap" type="com.info.entity.TransferOrder" >
+        <id column="transferorderid" property="transferorderid" jdbcType="INTEGER" />
+        <result column="aliveFlag" property="aliveflag" jdbcType="BIT" />
+        <result column="dutyDate" property="dutydate" jdbcType="TIMESTAMP" />
+        <result column="inDate" property="indate" jdbcType="TIMESTAMP" />
+        <result column="inDepCode" property="indepcode" jdbcType="VARCHAR" />
+        <result column="inPositionCode" property="inpositioncode" jdbcType="VARCHAR" />
+        <result column="movDate" property="movdate" jdbcType="TIMESTAMP" />
+        <result column="movStatus" property="movstatus" jdbcType="VARCHAR" />
+        <result column="outDate" property="outdate" jdbcType="TIMESTAMP" />
+        <result column="outDepCode" property="outdepcode" jdbcType="VARCHAR" />
+        <result column="outPositionCode" property="outpositioncode" jdbcType="VARCHAR" />
+        <result column="recCreTm" property="reccretm" jdbcType="TIMESTAMP" />
+        <result column="recCreUsrId" property="reccreusrid" jdbcType="VARCHAR" />
+        <result column="recUpdtTm" property="recupdttm" jdbcType="TIMESTAMP" />
+        <result column="recUpdtUsrId" property="recupdtusrid" jdbcType="VARCHAR" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="staffId" property="staffid" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from f3_transferorder
+        where transferorderid = #{transferorderid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.info.entity.TransferOrder" >
+        insert into f3_transferorder (transferorderid, aliveFlag, dutyDate, 
+            inDate, inDepCode, inPositionCode, 
+            movDate, movStatus, outDate, 
+            outDepCode, outPositionCode, recCreTm, 
+            recCreUsrId, recUpdtTm, recUpdtUsrId, 
+            remark, staffId)
+        values (#{transferorderid,jdbcType=INTEGER}, #{aliveflag,jdbcType=BIT}, #{dutydate,jdbcType=TIMESTAMP}, 
+            #{indate,jdbcType=TIMESTAMP}, #{indepcode,jdbcType=VARCHAR}, #{inpositioncode,jdbcType=VARCHAR}, 
+            #{movdate,jdbcType=TIMESTAMP}, #{movstatus,jdbcType=VARCHAR}, #{outdate,jdbcType=TIMESTAMP}, 
+            #{outdepcode,jdbcType=VARCHAR}, #{outpositioncode,jdbcType=VARCHAR}, #{reccretm,jdbcType=TIMESTAMP}, 
+            #{reccreusrid,jdbcType=VARCHAR}, #{recupdttm,jdbcType=TIMESTAMP}, #{recupdtusrid,jdbcType=VARCHAR}, 
+            #{remark,jdbcType=VARCHAR}, #{staffid,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.info.entity.TransferOrder" >
+        update f3_transferorder
+        set aliveFlag = #{aliveflag,jdbcType=BIT},
+            dutyDate = #{dutydate,jdbcType=TIMESTAMP},
+            inDate = #{indate,jdbcType=TIMESTAMP},
+            inDepCode = #{indepcode,jdbcType=VARCHAR},
+            inPositionCode = #{inpositioncode,jdbcType=VARCHAR},
+            movDate = #{movdate,jdbcType=TIMESTAMP},
+            movStatus = #{movstatus,jdbcType=VARCHAR},
+            outDate = #{outdate,jdbcType=TIMESTAMP},
+            outDepCode = #{outdepcode,jdbcType=VARCHAR},
+            outPositionCode = #{outpositioncode,jdbcType=VARCHAR},
+            recCreTm = #{reccretm,jdbcType=TIMESTAMP},
+            recCreUsrId = #{reccreusrid,jdbcType=VARCHAR},
+            recUpdtTm = #{recupdttm,jdbcType=TIMESTAMP},
+            recUpdtUsrId = #{recupdtusrid,jdbcType=VARCHAR},
+            remark = #{remark,jdbcType=VARCHAR},
+            staffId = #{staffid,jdbcType=VARCHAR}
+        where transferorderid = #{transferorderid,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select transferorderid, aliveFlag, dutyDate, inDate, inDepCode, inPositionCode, movDate, 
+        movStatus, outDate, outDepCode, outPositionCode, recCreTm, recCreUsrId, recUpdtTm, 
+        recUpdtUsrId, remark, staffId
+        from f3_transferorder
+        where transferorderid = #{transferorderid,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap" >
+        select transferorderid, aliveFlag, dutyDate, inDate, inDepCode, inPositionCode, movDate, 
+        movStatus, outDate, outDepCode, outPositionCode, recCreTm, recCreUsrId, recUpdtTm, 
+        recUpdtUsrId, remark, staffId
+        from f3_transferorder
+    </select>
+
+</mapper>

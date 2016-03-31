@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ContractMapper" >
+    <resultMap id="BaseResultMap" type="com.info.entity.Contract" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="aliveFlag" property="aliveflag" jdbcType="BIT" />
+        <result column="beginDate" property="begindate" jdbcType="TIMESTAMP" />
+        <result column="comMoney" property="commoney" jdbcType="DOUBLE" />
+        <result column="contractEndExp" property="contractendexp" jdbcType="VARCHAR" />
+        <result column="contractExp" property="contractexp" jdbcType="VARCHAR" />
+        <result column="contractId" property="contractid" jdbcType="VARCHAR" />
+        <result column="contractStatus" property="contractstatus" jdbcType="VARCHAR" />
+        <result column="contractTimes" property="contracttimes" jdbcType="DOUBLE" />
+        <result column="contractType" property="contracttype" jdbcType="VARCHAR" />
+        <result column="endDate" property="enddate" jdbcType="TIMESTAMP" />
+        <result column="modelNo" property="modelno" jdbcType="VARCHAR" />
+        <result column="otherExplain" property="otherexplain" jdbcType="VARCHAR" />
+        <result column="recCreTm" property="reccretm" jdbcType="TIMESTAMP" />
+        <result column="recCreUsrId" property="reccreusrid" jdbcType="VARCHAR" />
+        <result column="recUpdtTm" property="recupdttm" jdbcType="TIMESTAMP" />
+        <result column="recUpdtUsrId" property="recupdtusrid" jdbcType="VARCHAR" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="staffId" property="staffid" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from f4_contract
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.info.entity.Contract" >
+        insert into f4_contract (id, aliveFlag, beginDate, 
+            comMoney, contractEndExp, contractExp, 
+            contractId, contractStatus, contractTimes, 
+            contractType, endDate, modelNo, 
+            otherExplain, recCreTm, recCreUsrId, 
+            recUpdtTm, recUpdtUsrId, remark, 
+            staffId)
+        values (#{id,jdbcType=INTEGER}, #{aliveflag,jdbcType=BIT}, #{begindate,jdbcType=TIMESTAMP}, 
+            #{commoney,jdbcType=DOUBLE}, #{contractendexp,jdbcType=VARCHAR}, #{contractexp,jdbcType=VARCHAR}, 
+            #{contractid,jdbcType=VARCHAR}, #{contractstatus,jdbcType=VARCHAR}, #{contracttimes,jdbcType=DOUBLE}, 
+            #{contracttype,jdbcType=VARCHAR}, #{enddate,jdbcType=TIMESTAMP}, #{modelno,jdbcType=VARCHAR}, 
+            #{otherexplain,jdbcType=VARCHAR}, #{reccretm,jdbcType=TIMESTAMP}, #{reccreusrid,jdbcType=VARCHAR}, 
+            #{recupdttm,jdbcType=TIMESTAMP}, #{recupdtusrid,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+            #{staffid,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.info.entity.Contract" >
+        update f4_contract
+        set aliveFlag = #{aliveflag,jdbcType=BIT},
+            beginDate = #{begindate,jdbcType=TIMESTAMP},
+            comMoney = #{commoney,jdbcType=DOUBLE},
+            contractEndExp = #{contractendexp,jdbcType=VARCHAR},
+            contractExp = #{contractexp,jdbcType=VARCHAR},
+            contractId = #{contractid,jdbcType=VARCHAR},
+            contractStatus = #{contractstatus,jdbcType=VARCHAR},
+            contractTimes = #{contracttimes,jdbcType=DOUBLE},
+            contractType = #{contracttype,jdbcType=VARCHAR},
+            endDate = #{enddate,jdbcType=TIMESTAMP},
+            modelNo = #{modelno,jdbcType=VARCHAR},
+            otherExplain = #{otherexplain,jdbcType=VARCHAR},
+            recCreTm = #{reccretm,jdbcType=TIMESTAMP},
+            recCreUsrId = #{reccreusrid,jdbcType=VARCHAR},
+            recUpdtTm = #{recupdttm,jdbcType=TIMESTAMP},
+            recUpdtUsrId = #{recupdtusrid,jdbcType=VARCHAR},
+            remark = #{remark,jdbcType=VARCHAR},
+            staffId = #{staffid,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select id, aliveFlag, beginDate, comMoney, contractEndExp, contractExp, contractId, 
+        contractStatus, contractTimes, contractType, endDate, modelNo, otherExplain, recCreTm, 
+        recCreUsrId, recUpdtTm, recUpdtUsrId, remark, staffId
+        from f4_contract
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap" >
+        select id, aliveFlag, beginDate, comMoney, contractEndExp, contractExp, contractId, 
+        contractStatus, contractTimes, contractType, endDate, modelNo, otherExplain, recCreTm, 
+        recCreUsrId, recUpdtTm, recUpdtUsrId, remark, staffId
+        from f4_contract
+    </select>
+
+</mapper>

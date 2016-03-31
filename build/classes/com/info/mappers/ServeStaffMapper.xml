@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ServeStaffMapper" >
+    <resultMap id="BaseResultMap" type="com.info.entity.ServeStaff" >
+        <id column="servestaffid" property="servestaffid" jdbcType="INTEGER" />
+        <result column="aliveFlag" property="aliveflag" jdbcType="BIT" />
+        <result column="deptCode" property="deptcode" jdbcType="VARCHAR" />
+        <result column="fixedType" property="fixedtype" jdbcType="VARCHAR" />
+        <result column="positionCode" property="positioncode" jdbcType="VARCHAR" />
+        <result column="recCreTm" property="reccretm" jdbcType="TIMESTAMP" />
+        <result column="recCreUsrId" property="reccreusrid" jdbcType="VARCHAR" />
+        <result column="recUpdtTm" property="recupdttm" jdbcType="TIMESTAMP" />
+        <result column="recUpdtUsrId" property="recupdtusrid" jdbcType="VARCHAR" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="staffId" property="staffid" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from f3_servestaff
+        where servestaffid = #{servestaffid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.info.entity.ServeStaff" >
+        insert into f3_servestaff (servestaffid, aliveFlag, deptCode, 
+            fixedType, positionCode, recCreTm, 
+            recCreUsrId, recUpdtTm, recUpdtUsrId, 
+            remark, staffId)
+        values (#{servestaffid,jdbcType=INTEGER}, #{aliveflag,jdbcType=BIT}, #{deptcode,jdbcType=VARCHAR}, 
+            #{fixedtype,jdbcType=VARCHAR}, #{positioncode,jdbcType=VARCHAR}, #{reccretm,jdbcType=TIMESTAMP}, 
+            #{reccreusrid,jdbcType=VARCHAR}, #{recupdttm,jdbcType=TIMESTAMP}, #{recupdtusrid,jdbcType=VARCHAR}, 
+            #{remark,jdbcType=VARCHAR}, #{staffid,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.info.entity.ServeStaff" >
+        update f3_servestaff
+        set aliveFlag = #{aliveflag,jdbcType=BIT},
+            deptCode = #{deptcode,jdbcType=VARCHAR},
+            fixedType = #{fixedtype,jdbcType=VARCHAR},
+            positionCode = #{positioncode,jdbcType=VARCHAR},
+            recCreTm = #{reccretm,jdbcType=TIMESTAMP},
+            recCreUsrId = #{reccreusrid,jdbcType=VARCHAR},
+            recUpdtTm = #{recupdttm,jdbcType=TIMESTAMP},
+            recUpdtUsrId = #{recupdtusrid,jdbcType=VARCHAR},
+            remark = #{remark,jdbcType=VARCHAR},
+            staffId = #{staffid,jdbcType=VARCHAR}
+        where servestaffid = #{servestaffid,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select servestaffid, aliveFlag, deptCode, fixedType, positionCode, recCreTm, recCreUsrId, 
+        recUpdtTm, recUpdtUsrId, remark, staffId
+        from f3_servestaff
+        where servestaffid = #{servestaffid,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap" >
+        select servestaffid, aliveFlag, deptCode, fixedType, positionCode, recCreTm, recCreUsrId, 
+        recUpdtTm, recUpdtUsrId, remark, staffId
+        from f3_servestaff
+    </select>
+
+</mapper>
