@@ -19,9 +19,24 @@
 	        "name":$("#s_name").val()
 	    });
 	}
+	
+	var editIndex = undefined;
+	function endEditing(){
+		if (editIndex == undefined){return true}
+		if ($('#dg').datagrid('validateRow', editIndex)){
+			var ed = $('#dg').datagrid('getEditor', {index:editIndex,field:'productid'});
+			var productname = $(ed.target).combobox('getText');
+			$('#dg').datagrid('getRows')[editIndex]['productname'] = productname;
+			$('#dg').datagrid('endEdit', editIndex);
+			editIndex = undefined;
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-//删除合同
-    function deleteCustomer(){
+	//删除岗位分类信息
+    function deletePostSort(){
         var selectedRows=$("#dg").datagrid('getSelections');
         if(selectedRows.length==0){
             $.messager.alert("系统提示","请选择要删除的数据！");
@@ -29,12 +44,13 @@
         }
         var strIds=[];
         for(var i=0;i<selectedRows.length;i++){
-            strIds.push(selectedRows[i].id);
+            strIds.push(selectedRows[i].postsortid);
         }
+        alert(strIds);
         var ids=strIds.join(",");
-        $.messager.confirm("系统提示","删除合同将会连合同付息表、审批表一并删除，该操作不可逆，您确认要删除这<font color=red>"+selectedRows.length+"</font>条数据吗？",function(r){
+        $.messager.confirm("系统提示","确认要删除这<font color=red>"+selectedRows.length+"</font>条数据吗？",function(r){
             if(r){
-                $.post("${pageContext.request.contextPath}/customer/delete.do",{ids:ids},function(result){
+                $.post("${pageContext.request.contextPath}/f1/deletePostSort.do",{ids:ids},function(result){
                     if(result.success){
                         $.messager.alert("系统提示","数据已成功删除！");
                         $("#dg").datagrid("reload");
@@ -43,15 +59,32 @@
                     }
                 },"json");
             }
-        });
-        
+        });      
     }
     
     //新增合同
     function addOrder(){
         url = "${pageContext.request.contextPath}/Sales/goSalesOrderEdit.do?id=0";  
         window.open(url,"_blank","height=600px","width=600px","location=no")
-    }       
+    }      
+    
+    //grid内新增
+	function append(){
+		if (endEditing()){
+			$('#dg').datagrid('appendRow',{status:'P'});
+			editIndex = $('#dg').datagrid('getRows').length-1;
+			$('#dg').datagrid('selectRow', editIndex)
+					.datagrid('beginEdit', editIndex);
+		}
+	}
+    
+    //grid内保存
+	function accept(){
+		var rows = $('#dg').datagrid('getChanges');
+		//if (endEditing()){
+		//	$('#dg').datagrid('acceptChanges');
+		//}
+	}
     
     function openCustomerLinkMan(){
         var selectedRows=$("#dg").datagrid('getSelections');
@@ -88,25 +121,6 @@
         }  
     } 
     
-    //编辑合同
-    function editOrder(index){  
-        $('#dg').datagrid('selectRow',index);  
-        var row = $('#dg').datagrid('getSelected');  
-        if (row){  
-            url = "${pageContext.request.contextPath}/Sales/goSalesOrderEdit.do?id="+row.id;  
-            alert(url);
-            window.open(url,"_blank","height=600px","width=600px","location=no")
-        }  
-    } 
-    
-    //续签合同
-    function renewOrder(index){  
-        $('#dg').datagrid('selectRow',index);
-        var row = $('#dg').datagrid('getSelected');  
-        if (row){  
-            //url = '${ctx}updateStudent.do?id='+row.id;  
-        }  
-    } 
     
     //合同编号链接格式
     function formatTitle(val,row,index){
@@ -123,22 +137,32 @@
          <thead data-options="frozen:true "  >
                 <tr>
                     <th field="cb" checkbox="true" align="center"></th>
-                    <th field="id" width="50" align="center" hidden="true">编号</th>
+                    <th field="postsortid" width="50" align="center" hidden="true">编号</th>
                     <th field="postsortcode" width="150" align="center"  formatter="formatTitle" >岗位分类代码</th>
                     <th field="postsortname" width="100" align="center">岗位分类名称</th>
                     <th field="level" width="100" align="center">层次</th>
-                    <th field="aliveflag" width="100" align="center"  >有效标志</th>
+                    <th field="aliveflag" width="100" align="center" >有效标志</th>
+                    <!-- <th data-options="field:'status',width:60,align:'center',editor:{type:'checkbox',options:{on:'P',off:''}}"  checkbox="true"></th> -->
                     <th field="reccretm" width="100" align="center">创建时间</th>
                     <!-- <th field="_operate" width="100" align="center" formatter="formatOper">操作</th>  -->                   
                 </tr>
             </thead>
     </table>
     <div id="tb">
-        <div>
+        <!--  <div>
             <a href="javascript:addOrder()" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增岗位分类</a>
             <a href="javascript:openCustomerModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
             <a href="javascript:deleteCustomer()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
-        </div>
+        </div>  -->
+        
+       <div id="tb" style="height:auto">
+			<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="append()">新增</a>
+			<a href="javascript:deletePostSort()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="accept()">保存</a>
+			<!--<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-undo',plain:true" onclick="reject()">Reject</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="getChanges()">GetChanges</a>-->
+	   </div>
+	
         <div>
             &nbsp;岗位分类名称：&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) searchCustomer()"/>&nbsp;
             <a href="javascript:search()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>

@@ -34,6 +34,12 @@ public class PostSortService
     {
         return (int) dao.save("SalesOrderListMapper.updateSalesOrder", postSort);
     }
+    
+    //删除岗位分类信息
+    public int deletePostSort(int postsortid) throws Exception
+    {
+        return (int) dao.delete("PostSortMapper.deletePostSort", postsortid);
+    }
 
     // 保存岗位分类
     public void savePostSort(HashMap map) throws Exception

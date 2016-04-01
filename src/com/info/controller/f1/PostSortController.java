@@ -87,6 +87,19 @@ public class PostSortController
         result.put("total", total);
         ResponseUtil.write(response, result);
     }
+    
+    //删除岗位分类信息
+	@RequestMapping("/deletePostSort")
+	public String deletePostSort(@RequestParam(value="ids")String ids,HttpServletResponse response)throws Exception{
+		JSONObject result=new JSONObject();
+		String []idsStr=ids.split(",");
+		for(int i=0;i<idsStr.length;i++){
+			postSortService.deletePostSort(Integer.parseInt(idsStr[i]));
+		}
+		result.put("success", true);
+		ResponseUtil.write(response, result);
+		return null;
+	}
 
     /*
     // 查询合同还款信息

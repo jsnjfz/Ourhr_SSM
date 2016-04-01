@@ -13,7 +13,7 @@
         <result column="recUpdtUsrId" property="recupdtusrid" jdbcType="VARCHAR" />
     </resultMap>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <delete id="deletePostSort" parameterType="java.lang.Integer" >
         delete from f1_postsort
         where postsortId = #{postsortid,jdbcType=INTEGER}
     </delete>
