@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="Webservice">
+	<description>规划模块webservice</description>
+	<!-- 通过ServiceObjectSupplier参数指定SpringServletContextObjectSupplier类来获得Spring的ApplicationContext对象 -->
+	<!-- <parameter name="ServiceObjectSupplier">
+		org.apache.axis2.extensions.spring.receivers.SpringAppContextAwareObjectSupplier
+	</parameter> -->
+	
+	<parameter name="ServiceObjectSupplier">
+		org.apache.axis2.extensions.spring.receivers.SpringServletContextObjectSupplier</parameter>
+
+	<!-- SpringBeanName固定的不能改 ourClient是spring中注册的实现类得id -->
+	<parameter name="SpringBeanName">f1</parameter>
+	<!-- 在这里最值得注意的是<messageReceivers>元素，该元素用于设置处理WebService方法的处理器。 -->
+	<messageReceivers>
+	<!-- 1.7以前用http://www.w3.org/2004/08/wsdl，1.7以后用http://www.w3.org/ns/wsdl -->
+		<messageReceiver mep="http://www.w3.org/ns/wsdl/in-only"
+			class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
+		<messageReceiver mep="http://www.w3.org/ns/wsdl/in-out"
+			class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+	</messageReceivers>
+</service>

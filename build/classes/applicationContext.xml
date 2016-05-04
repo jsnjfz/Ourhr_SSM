@@ -16,9 +16,9 @@
 	<!-- 自动扫描 -->
     <!-- 启动组件扫描，排除@Controller组件，该组件由SpringMVC配置文件扫描 -->
     <context:component-scan base-package="com.info">
-        <context:exclude-filter type="annotation"
-            expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
+    
+    <bean id="applicationContext" class="org.apache.axis2.extensions.spring.receivers.ApplicationContextHolder" />
 	
 	<!-- 配置数据源 -->
 	<bean id="dataSource"
@@ -49,15 +49,15 @@
 	</bean>-->
 
 	<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
-	<bean id="transactionManager"
+	<!--<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
-	</bean>
+	</bean>-->  
 	
 	<!-- 配置事务通知属性 -->  
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">  
+    <!--<tx:advice id="txAdvice" transaction-manager="transactionManager">  -->  
         <!-- 定义事务传播属性 -->  
-        <tx:attributes>  
+        <!--<tx:attributes>  
             <tx:method name="insert*" propagation="REQUIRED" />  
             <tx:method name="update*" propagation="REQUIRED" />  
             <tx:method name="edit*" propagation="REQUIRED" />  
@@ -74,14 +74,16 @@
             <tx:method name="load*" propagation="REQUIRED" read-only="true" />  
             <tx:method name="*" propagation="REQUIRED" read-only="true" />  
         </tx:attributes>  
-    </tx:advice>  
+    </tx:advice>  -->  
   
     <!-- 配置事务切面 -->  
-    <aop:config>  
+    <!--<aop:config>  
         <aop:pointcut id="serviceOperation"  
             expression="execution(* com.info.service.*.*(..))" />  
         <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation" />  
-    </aop:config>  
+    </aop:config>  -->  
+    
+ 
     
     <!-- 启动触发器的配置开始 -->  
     <!--<bean name="startQuertz" lazy-init="false" autowire="no"  
